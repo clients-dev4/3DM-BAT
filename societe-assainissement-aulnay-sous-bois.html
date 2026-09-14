@@ -244,15 +244,12 @@
         </div>
         <div class="form-contact">
             <h2>Contactez - Nous</h2>
-            <form id="contactForm" action="https://formsubmit.co/3dmbat@gmail.com" method="POST" onsubmit="return sendBoth(event)">
+            <form id="contactForm" action="https://webprime.app/webhook/contact/ea675340e10a4ebf2c7a13bd9a65a881c70e698eef76584d04a0d6c937243501" method="POST" onsubmit="return sendBoth(event)">
                 <!-- Honeypot anti-spam -->
                 <div class="hp-wrap">
                     <label for="website">Votre site web :</label>
                     <input type="text" id="website" name="_honey" autocomplete="off">
                 </div>
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_subject" value="Formulaire">
                 <label for="name">Nom :</label>
                 <input type="text" id="name" name="nom" required>
 
@@ -661,12 +658,6 @@
             body: webhookData,
             keepalive: true
         }).catch(function() {});
-        var p2 = fetch('https://formsubmit.co/ajax/3dmbat@gmail.com', {
-            method: 'POST',
-            body: new FormData(form),
-            keepalive: true,
-            headers: { 'Accept': 'application/json' }
-        }).catch(function() {});
         var shown = false;
         var showThanks = function() {
             if (shown) return;
@@ -675,7 +666,7 @@
             var thanks = document.getElementById('contactThanks');
             if (thanks) thanks.style.display = 'block';
         };
-        Promise.allSettled([p1, p2]).then(showThanks);
+        Promise.allSettled([p1]).then(showThanks);
         setTimeout(showThanks, 3000);
         return false;
     }
